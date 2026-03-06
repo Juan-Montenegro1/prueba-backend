@@ -2,6 +2,8 @@ package prueba_backend.demo.models;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -24,6 +26,7 @@ public class Sucursal {
 
     @ManyToOne
     @JoinColumn(name = "franquicia_id")
+    @JsonBackReference
     private Franquicia franquicia;
 
     @OneToMany(mappedBy = "sucursal", cascade = CascadeType.ALL, orphanRemoval = true)
