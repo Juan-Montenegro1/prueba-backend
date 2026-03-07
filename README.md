@@ -47,7 +47,7 @@ La aplicación está configurada para usar MySQL. Para ejecutar una instancia lo
 docker run --name mysql-demo -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=prueba_db -e MYSQL_USER=myuser -e MYSQL_PASSWORD=mypassword -p 3306:3306 -d mysql:8.0
 ```
 
-O usando Docker Compose (nota: el archivo `compose.yaml` actual tiene PostgreSQL, pero la aplicación usa MySQL. Se recomienda actualizarlo o usar el comando anterior).
+O usando Docker Compose.
 
 ### 3. Configurar las Propiedades de la Aplicación
 
