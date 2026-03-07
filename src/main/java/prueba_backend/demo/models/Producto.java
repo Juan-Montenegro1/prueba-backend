@@ -1,5 +1,7 @@
 package prueba_backend.demo.models;
 
+import java.io.Serializable;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import jakarta.persistence.Entity;
@@ -12,7 +14,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Producto {
+public class Producto implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

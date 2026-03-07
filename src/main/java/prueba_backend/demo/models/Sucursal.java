@@ -1,5 +1,6 @@
 package prueba_backend.demo.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -16,7 +17,7 @@ import lombok.Data;
 
 @Entity
 @Data
-public class Sucursal {
+public class Sucursal implements Serializable{
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

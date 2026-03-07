@@ -1,5 +1,6 @@
 package prueba_backend.demo.models;
 
+import java.io.Serializable;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -22,7 +23,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @EqualsAndHashCode
-public class Franquicia {
+public class Franquicia implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
