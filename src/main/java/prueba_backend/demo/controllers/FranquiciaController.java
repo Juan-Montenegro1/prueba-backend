@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -102,6 +103,44 @@ public class FranquiciaController {
             return ResponseEntity.ok(result);
         } catch (RuntimeException e) {
             log.error("Error al obtener productos con mayor stock para franquicia ID: {}: {}", franquiciaId, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+    @PutMapping("/franquicias/{franquiciaId}/upload")
+    public ResponseEntity<?> actualizarFranquicia(@PathVariable Long franquiciaId, @RequestBody Franquicia franquicia) {
+        log.info("Actualizando franquicia ID: {}", franquiciaId);
+        try {
+            Franquicia updated = franquiciaService.actualizarFranquicia(franquiciaId, franquicia);
+            log.info("Franquicia ID: {} actualizada exitosamente", franquiciaId);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            log.error("Error al actualizar franquicia ID: {}: {}", franquiciaId, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/sucursales/{sucursalId}/upload")
+    public ResponseEntity<?> actualizarSucursal(@PathVariable Long sucursalId, @RequestBody Sucursal sucursal) {
+        log.info("Actualizando sucursal ID: {}", sucursalId);
+        try {
+            Sucursal updated = franquiciaService.actualizarSucursal(sucursalId, sucursal);
+            log.info("Sucursal ID: {} actualizada exitosamente", sucursalId);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            log.error("Error al actualizar sucursal ID: {}: {}", sucursalId, e.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+        }
+    }
+
+    @PutMapping("/productos/{productoId}/upload")
+    public ResponseEntity<?> actualizarProducto(@PathVariable Long productoId, @RequestBody Producto producto) {
+        log.info("Actualizando producto ID: {}", productoId);
+        try {
+            Producto updated = franquiciaService.actualizarProducto(productoId, producto);
+            log.info("Producto ID: {} actualizado exitosamente", productoId);
+            return ResponseEntity.ok(updated);
+        } catch (RuntimeException e) {
+            log.error("Error al actualizar producto ID: {}: {}", productoId, e.getMessage());
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }

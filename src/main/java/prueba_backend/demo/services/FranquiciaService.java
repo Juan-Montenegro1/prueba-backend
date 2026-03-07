@@ -122,4 +122,44 @@ public class FranquiciaService implements IFranquiciaService {
         log.info("Encontrados {} productos con mayor stock para franquicia ID: {}", result.size(), franquiciaId);
         return result;
     }
+
+    @Override
+    public Franquicia actualizarFranquicia(Long franquiciaId, Franquicia franquiciaActualizada) {
+        log.info("Actualizando franquicia ID: {}", franquiciaId);
+        Franquicia franquicia = franquiciaRepository.findById(franquiciaId)
+                .orElseThrow(() -> {
+                    log.error("Franquicia no encontrada con ID: {}", franquiciaId);
+                    return new RuntimeException("Franquicia no encontrada");
+                });
+        franquicia.setNombre(franquiciaActualizada.getNombre());
+        Franquicia saved = franquiciaRepository.save(franquicia);
+        log.info("Franquicia ID: {} actualizada con nuevo nombre: {}", franquiciaId, saved.getNombre());
+        return saved;
+    }
+    public Sucursal actualizarSucursal(Long sucursalId, Sucursal sucursalActualizada) {
+        log.info("Actualizando sucursal ID: {}", sucursalId);
+        Sucursal sucursal = sucursalRepository.findById(sucursalId)
+                .orElseThrow(() -> {
+                    log.error("Sucursal no encontrada con ID: {}", sucursalId);
+                    return new RuntimeException("Sucursal no encontrada");
+                });
+        sucursal.setNombre(sucursalActualizada.getNombre());
+        Sucursal saved = sucursalRepository.save(sucursal);
+        log.info("Sucursal ID: {} actualizada con nuevo nombre: {}", sucursalId, saved.getNombre());
+        return saved;
+    }
+    public Producto actualizarProducto(Long productoId, Producto productoActualizado) {
+        log.info("Actualizando producto ID: {}", productoId);
+        Producto producto = productoRepository.findById(productoId)
+                .orElseThrow(() -> {
+                    log.error("Producto no encontrado con ID: {}", productoId);
+                    return new RuntimeException("Producto no encontrado");
+                });
+        producto.setNombre(productoActualizado.getNombre());
+        producto.setStock(productoActualizado.getStock());
+        Producto saved = productoRepository.save(producto);
+        log.info("Producto ID: {} actualizado con nuevo nombre: {} y stock: {}", 
+                productoId, saved.getNombre(), saved.getStock());
+        return saved;
+    }
 }

@@ -19,4 +19,10 @@ public interface IFranquiciaService {
     Producto actualizarStock(Long productoId, int nuevoStock);
 
     List<ProductoMayorStock> obtenerProductoMayorStock(Long franquiciaId);
+
+    Franquicia actualizarFranquicia(Long franquiciaId, Franquicia franquicia);
+
+    Sucursal actualizarSucursal(Long sucursalId, Sucursal sucursal);
+
+    Producto actualizarProducto(Long productoId, Producto producto);
 }
